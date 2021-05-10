@@ -51,4 +51,16 @@ public class RectangleTest {
         assertEquals(expectedArea, actualArea);
     }
 
+    // Perimeter Tests
+    @Test
+    public void shouldReturnPerimeterFourForUnitSides() {
+        Rectangle rectangle = new Rectangle(1, 1);
+        double expectedPerimeter = 4;
+
+        double actualPerimeter = rectangle.perimeter();
+
+        assertEquals(expectedPerimeter, actualPerimeter);
+    }
+
+
 }
