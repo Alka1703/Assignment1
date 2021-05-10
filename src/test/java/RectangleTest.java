@@ -5,6 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RectangleTest {
 
+    //Validating Dimensions of Rectangle
+
+    @Test
+    public void shouldRaiseExceptionIfAnySideIsNegativeOrZero() {
+        assertThrows(IllegalArgumentException.class, () -> new Rectangle(-10, -3));
+        assertThrows(IllegalArgumentException.class, () -> new Rectangle(0, 9));
+    }
+
     //Area Tests
 
     @Test
@@ -25,12 +33,6 @@ public class RectangleTest {
         double actualArea = rectangle.area();
 
         assertEquals(expectedArea, actualArea);
-    }
-
-    @Test
-    public void shouldRaiseExceptionIfAnySideIsNegativeOrZero() {
-        assertThrows(IllegalArgumentException.class, () -> new Rectangle(-10, -3));
-        assertThrows(IllegalArgumentException.class, () -> new Rectangle(0, 9));
     }
 
     @Test
@@ -58,6 +60,16 @@ public class RectangleTest {
     public void shouldReturnPerimeterValueForPositiveSides() {
         Rectangle rectangle = new Rectangle(4, 5);
         double expectedPerimeter = 18;
+
+        double actualPerimeter = rectangle.perimeter();
+
+        assertEquals(expectedPerimeter, actualPerimeter);
+    }
+
+    @Test
+    void shouldReturnInfinityIfPerimeterOverFlowsMaxValueOfDouble() {
+        Rectangle rectangle = new Rectangle(Double.MAX_VALUE - 1, Double.MAX_VALUE);
+        double expectedPerimeter = Double.POSITIVE_INFINITY;
 
         double actualPerimeter = rectangle.perimeter();
 
