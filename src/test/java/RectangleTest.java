@@ -13,4 +13,14 @@ public class RectangleTest {
 
         assertEquals(expectedArea, actualArea);
     }
+
+    @Test
+    public void shouldReturnAreaEqualsOneIfBothSidesAreOne() {
+        Rectangle rectangle = new Rectangle(1, 1);
+        double expectedArea = 1;
+
+        double actualArea = rectangle.area();
+
+        assertEquals(expectedArea, actualArea);
+    }
 }
