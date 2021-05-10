@@ -28,8 +28,8 @@ public class RectangleTest {
 
     @Test
     public void shouldReturnCalculatedAreaIfSidesArePositive() {
-        Rectangle rectangle = new Rectangle(10, 3);
-        double expectedArea = 30;
+        Rectangle rectangle = new Rectangle(10,20);
+        double expectedArea = 200;
 
         double actualArea = rectangle.area();
 
@@ -41,5 +41,14 @@ public class RectangleTest {
         assertThrows(IllegalArgumentException.class, () -> new Rectangle(-10, -3));
     }
 
+    @Test
+    public void shouldReturnInfinityIfTheAreaOverflowsMaxValueOfDouble (){
+        Rectangle rectangle = new Rectangle(Double.MAX_VALUE-1, Double.MAX_VALUE - 1);
+        double expectedArea = Double.POSITIVE_INFINITY;
+
+        double actualArea = rectangle.area();
+
+        assertEquals(expectedArea, actualArea);
+    }
 
 }
