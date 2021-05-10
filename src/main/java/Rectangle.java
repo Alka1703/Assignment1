@@ -3,7 +3,7 @@ public class Rectangle {
     private final double breadth;
 
     private void checkDimensionsValidity(double length, double breadth) {
-        if (length < 0 || breadth < 0) {
+        if (length <= 0 || breadth <= 0) {
             throw new IllegalArgumentException("Dimension cannot be negative.");
         }
     }

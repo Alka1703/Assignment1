@@ -5,20 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RectangleTest {
 
-    @Test
-    public void shouldReturnAreaEqualsZeroIfSideIsZero() {
-        Rectangle rectangle = new Rectangle(0, 3);
-        double expectedArea = 0;
-
-        double actualArea = rectangle.area();
-
-        assertEquals(expectedArea, actualArea);
-    }
+    //Area Tests
 
     @Test
     public void shouldReturnAreaEqualsOneIfBothSidesAreOne() {
         Rectangle rectangle = new Rectangle(1, 1);
-
         double expectedArea = 1;
 
         double actualArea = rectangle.area();
@@ -37,8 +28,9 @@ public class RectangleTest {
     }
 
     @Test
-    public void shouldReturnCalculatedAreaIfSideIsNegative() {
+    public void shouldRaiseExceptionIfAnySideIsNegativeOrZero() {
         assertThrows(IllegalArgumentException.class, () -> new Rectangle(-10, -3));
+        assertThrows(IllegalArgumentException.class, () -> new Rectangle(0, 9));
     }
 
     @Test
@@ -71,5 +63,4 @@ public class RectangleTest {
 
         assertEquals(expectedPerimeter, actualPerimeter);
     }
-
 }
