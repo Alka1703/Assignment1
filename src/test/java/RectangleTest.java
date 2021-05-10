@@ -23,4 +23,14 @@ public class RectangleTest {
 
         assertEquals(expectedArea, actualArea);
     }
+
+    @Test
+    public void shouldReturnCalculatedAreaIfSidesArePositive() {
+        Rectangle rectangle = new Rectangle(10, 3);
+        double expectedArea = 30;
+
+        double actualArea = rectangle.area();
+
+        assertEquals(expectedArea, actualArea);
+    }
 }

@@ -8,7 +8,6 @@ public class Rectangle{
     }
 
     public double area() {
-        if(length == 0 || breadth == 0) return 0;
-        return 1;
+        return length * breadth;
     }
 }
