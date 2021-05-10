@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RectangleTest {
 
@@ -17,6 +18,7 @@ public class RectangleTest {
     @Test
     public void shouldReturnAreaEqualsOneIfBothSidesAreOne() {
         Rectangle rectangle = new Rectangle(1, 1);
+
         double expectedArea = 1;
 
         double actualArea = rectangle.area();
@@ -33,4 +35,11 @@ public class RectangleTest {
 
         assertEquals(expectedArea, actualArea);
     }
+
+    @Test
+    public void shouldReturnCalculatedAreaIfSideIsNegative() {
+        assertThrows(IllegalArgumentException.class, () -> new Rectangle(-10, -3));
+    }
+
+
 }
