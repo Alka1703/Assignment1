@@ -20,6 +20,6 @@ public class Rectangle {
     }
 
     public double perimeter() {
-        return 4;
+        return 2 * (length + breadth);
     }
 }

@@ -28,7 +28,7 @@ public class RectangleTest {
 
     @Test
     public void shouldReturnCalculatedAreaIfSidesArePositive() {
-        Rectangle rectangle = new Rectangle(10,20);
+        Rectangle rectangle = new Rectangle(10, 20);
         double expectedArea = 200;
 
         double actualArea = rectangle.area();
@@ -42,8 +42,8 @@ public class RectangleTest {
     }
 
     @Test
-    public void shouldReturnInfinityIfTheAreaOverflowsMaxValueOfDouble (){
-        Rectangle rectangle = new Rectangle(Double.MAX_VALUE-1, Double.MAX_VALUE - 1);
+    public void shouldReturnInfinityIfTheAreaOverflowsMaxValueOfDouble() {
+        Rectangle rectangle = new Rectangle(Double.MAX_VALUE - 1, Double.MAX_VALUE - 1);
         double expectedArea = Double.POSITIVE_INFINITY;
 
         double actualArea = rectangle.area();
@@ -62,5 +62,14 @@ public class RectangleTest {
         assertEquals(expectedPerimeter, actualPerimeter);
     }
 
+    @Test
+    public void shouldReturnPerimeterValueForPositiveSides() {
+        Rectangle rectangle = new Rectangle(4, 5);
+        double expectedPerimeter = 18;
+
+        double actualPerimeter = rectangle.perimeter();
+
+        assertEquals(expectedPerimeter, actualPerimeter);
+    }
 
 }
