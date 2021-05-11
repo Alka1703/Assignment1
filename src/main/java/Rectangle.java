@@ -20,7 +20,7 @@ public class Rectangle {
 
     public double area() throws AreaOutOfBoundsException {
         double area = length * breadth;
-        if (area == Double.MAX_VALUE || area == Double.POSITIVE_INFINITY)
+        if (area >= Double.MAX_VALUE || area == Double.POSITIVE_INFINITY)
         throw new AreaOutOfBoundsException("Area Value exceeds the double range");
         return area;
     }
@@ -29,7 +29,7 @@ public class Rectangle {
 
 
         double perimeter = 2 * (length + breadth);
-        if (perimeter == Double.MAX_VALUE || perimeter == Double.POSITIVE_INFINITY)
+        if (perimeter >= Double.MAX_VALUE || perimeter == Double.POSITIVE_INFINITY)
             throw new PerimeterOutOfBoundsException("Perimeter Value exceeds the double range");
 
         return perimeter;

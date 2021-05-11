@@ -54,7 +54,7 @@ public class RectangleTest {
 
     @Test
     void shouldRaiseExceptionIAreaOverFlowsMaxValueOfDouble() throws ValidateRectangleDimensionException {
-        Rectangle rectangle = new Rectangle(Double.MAX_VALUE + 2, Double.MAX_VALUE / 2);
+        Rectangle rectangle = new Rectangle(Double.MAX_VALUE / 2, Double.MAX_VALUE / 2);
         Executable executable = rectangle::area;
 
         assertThrows(AreaOutOfBoundsException.class, executable);
