@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -8,9 +9,25 @@ public class RectangleTest {
     //Validating Dimensions of Rectangle
 
     @Test
-    public void shouldRaiseExceptionIfAnySideIsNegativeOrZero() {
-        assertThrows(IllegalArgumentException.class, () -> new Rectangle(-10, -3));
-        assertThrows(IllegalArgumentException.class, () -> new Rectangle(0, 9));
+    public void shouldRaiseExceptionIfAnySideIsNegative() {
+        Executable executable = () -> new Rectangle(-10, -3);
+
+        assertThrows(IllegalArgumentException.class, executable);
+    }
+
+    @Test
+    void shouldRaiseExceptionIfAnySideIsDoubleMax() {
+        Executable executable = () -> new Rectangle(Double.MAX_VALUE, Double.MAX_VALUE);
+
+        assertThrows(IllegalArgumentException.class, executable);
+
+    }
+
+    @Test
+    public void shouldRaiseExceptionIfAnySideIsZero() {
+        Executable executable = () -> new Rectangle(0, 0);
+
+        assertThrows(IllegalArgumentException.class, executable);
     }
 
     //Area Tests

@@ -6,6 +6,9 @@ public class Rectangle {
         if (length <= 0 || breadth <= 0) {
             throw new IllegalArgumentException("Dimension cannot be negative.");
         }
+        if(length >= Double.MAX_VALUE && breadth >= Double.MAX_VALUE ){
+            throw new IllegalArgumentException("Dimension cannot be greater than Double Max.");
+        }
     }
 
     public Rectangle(double length, double breadth) {
