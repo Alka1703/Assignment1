@@ -1,17 +1,29 @@
+package com.thoughtworks.neev.shapes;
+
+import com.thoughtworks.neev.exception.AreaOutOfBoundsException;
+import com.thoughtworks.neev.exception.DimensionOutOfBoundException;
+import com.thoughtworks.neev.exception.PerimeterOutOfBoundsException;
+import com.thoughtworks.neev.exception.NonPositiveDimensionException;
+
 public class Rectangle {
     private final double length;
     private final double breadth;
 
-    private void checkDimensionsValidity(double length, double breadth) throws ValidateRectangleDimensionException {
+    public Rectangle(double side) {
+        this.length=side;
+        this.breadth=side;
+    }
+
+    private void checkDimensionsValidity(double length, double breadth) throws NonPositiveDimensionException, DimensionOutOfBoundException {
         if (length <= 0 || breadth <= 0) {
-            throw new ValidateRectangleDimensionException("Dimension cannot be negative.");
+            throw new NonPositiveDimensionException("Dimension cannot be negative.");
         }
         if (length >= Double.MAX_VALUE || breadth >= Double.MAX_VALUE) {
-            throw new ValidateRectangleDimensionException("Dimension cannot be greater than Double Max.");
+            throw new DimensionOutOfBoundException("Dimension cannot be greater than Double Max.");
         }
     }
 
-    public Rectangle(double length, double breadth) throws ValidateRectangleDimensionException {
+    public Rectangle(double length, double breadth) throws NonPositiveDimensionException, DimensionOutOfBoundException {
         checkDimensionsValidity(length, breadth);
 
         this.length = length;

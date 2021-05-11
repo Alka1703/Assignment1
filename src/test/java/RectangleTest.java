@@ -1,3 +1,8 @@
+import com.thoughtworks.neev.exception.AreaOutOfBoundsException;
+import com.thoughtworks.neev.exception.DimensionOutOfBoundException;
+import com.thoughtworks.neev.exception.PerimeterOutOfBoundsException;
+import com.thoughtworks.neev.exception.NonPositiveDimensionException;
+import com.thoughtworks.neev.shapes.Rectangle;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
@@ -6,20 +11,20 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RectangleTest {
 
-    //Validating Dimensions of Rectangle
+    //Validating Dimensions of com.thoughtworks.neev.shapes.Rectangle
 
     @Test
     public void shouldRaiseExceptionIfAnySideIsNegative() {
         Executable executable = () -> new Rectangle(-10, -3);
 
-        assertThrows(ValidateRectangleDimensionException.class, executable);
+        assertThrows(NonPositiveDimensionException.class, executable);
     }
 
     @Test
     void shouldRaiseExceptionIfAnySideIsDoubleMax() {
         Executable executable = () -> new Rectangle(Double.MAX_VALUE, Double.MAX_VALUE);
 
-        assertThrows(ValidateRectangleDimensionException.class, executable);
+        assertThrows(DimensionOutOfBoundException.class, executable);
 
     }
 
@@ -27,13 +32,13 @@ public class RectangleTest {
     public void shouldRaiseExceptionIfAnySideIsZero() {
         Executable executable = () -> new Rectangle(0, 0);
 
-        assertThrows(ValidateRectangleDimensionException.class, executable);
+        assertThrows(NonPositiveDimensionException.class, executable);
     }
 
     //Area Tests
 
     @Test
-    public void shouldReturnAreaEqualsOneIfBothSidesAreOne() throws ValidateRectangleDimensionException, AreaOutOfBoundsException {
+    public void shouldReturnAreaEqualsOneIfBothSidesAreOne() throws NonPositiveDimensionException, AreaOutOfBoundsException, DimensionOutOfBoundException {
         Rectangle rectangle = new Rectangle(1, 1);
         double expectedArea = 1;
 
@@ -43,7 +48,7 @@ public class RectangleTest {
     }
 
     @Test
-    public void shouldReturnCalculatedAreaIfSidesArePositive() throws ValidateRectangleDimensionException, AreaOutOfBoundsException {
+    public void shouldReturnCalculatedAreaIfSidesArePositive() throws NonPositiveDimensionException, AreaOutOfBoundsException, DimensionOutOfBoundException {
         Rectangle rectangle = new Rectangle(10, 20);
         double expectedArea = 200;
 
@@ -53,17 +58,17 @@ public class RectangleTest {
     }
 
     @Test
-    void shouldRaiseExceptionIAreaOverFlowsMaxValueOfDouble() throws ValidateRectangleDimensionException {
+    void shouldRaiseExceptionIAreaOverFlowsMaxValueOfDouble() throws NonPositiveDimensionException, DimensionOutOfBoundException {
         Rectangle rectangle = new Rectangle(Double.MAX_VALUE / 2, Double.MAX_VALUE / 2);
         Executable executable = rectangle::area;
 
         assertThrows(AreaOutOfBoundsException.class, executable);
-
     }
 
     // Perimeter Tests
     @Test
-    public void shouldReturnPerimeterFourForUnitSides() throws ValidateRectangleDimensionException, PerimeterOutOfBoundsException {
+    public void shouldReturnPerimeterFourForUnitSides() throws
+            NonPositiveDimensionException, PerimeterOutOfBoundsException, DimensionOutOfBoundException {
         Rectangle rectangle = new Rectangle(1, 1);
         double expectedPerimeter = 4;
 
@@ -73,7 +78,8 @@ public class RectangleTest {
     }
 
     @Test
-    public void shouldReturnPerimeterValueForPositiveSides() throws ValidateRectangleDimensionException, PerimeterOutOfBoundsException {
+    public void shouldReturnPerimeterValueForPositiveSides() throws
+            NonPositiveDimensionException, PerimeterOutOfBoundsException, DimensionOutOfBoundException {
         Rectangle rectangle = new Rectangle(4, 5);
         double expectedPerimeter = 18;
 
@@ -83,7 +89,8 @@ public class RectangleTest {
     }
 
     @Test
-    void shouldRaiseExceptionIfPerimeterOverFlowsMaxValueOfDouble() throws ValidateRectangleDimensionException {
+    void shouldRaiseExceptionIfPerimeterOverFlowsMaxValueOfDouble() throws
+            NonPositiveDimensionException, DimensionOutOfBoundException {
         Rectangle rectangle = new Rectangle(Double.MAX_VALUE / 2, Double.MAX_VALUE / 2);
         Executable executable = rectangle::perimeter;
 
