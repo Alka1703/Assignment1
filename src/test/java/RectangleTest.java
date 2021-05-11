@@ -12,14 +12,14 @@ public class RectangleTest {
     public void shouldRaiseExceptionIfAnySideIsNegative() {
         Executable executable = () -> new Rectangle(-10, -3);
 
-        assertThrows(IllegalArgumentException.class, executable);
+        assertThrows(ValidateRectangleDimensionException.class, executable);
     }
 
     @Test
     void shouldRaiseExceptionIfAnySideIsDoubleMax() {
         Executable executable = () -> new Rectangle(Double.MAX_VALUE, Double.MAX_VALUE);
 
-        assertThrows(IllegalArgumentException.class, executable);
+        assertThrows(ValidateRectangleDimensionException.class, executable);
 
     }
 
@@ -27,13 +27,13 @@ public class RectangleTest {
     public void shouldRaiseExceptionIfAnySideIsZero() {
         Executable executable = () -> new Rectangle(0, 0);
 
-        assertThrows(IllegalArgumentException.class, executable);
+        assertThrows(ValidateRectangleDimensionException.class, executable);
     }
 
     //Area Tests
 
     @Test
-    public void shouldReturnAreaEqualsOneIfBothSidesAreOne() {
+    public void shouldReturnAreaEqualsOneIfBothSidesAreOne() throws ValidateRectangleDimensionException, AreaOutOfBoundsException {
         Rectangle rectangle = new Rectangle(1, 1);
         double expectedArea = 1;
 
@@ -43,7 +43,7 @@ public class RectangleTest {
     }
 
     @Test
-    public void shouldReturnCalculatedAreaIfSidesArePositive() {
+    public void shouldReturnCalculatedAreaIfSidesArePositive() throws ValidateRectangleDimensionException, AreaOutOfBoundsException {
         Rectangle rectangle = new Rectangle(10, 20);
         double expectedArea = 200;
 
@@ -53,18 +53,17 @@ public class RectangleTest {
     }
 
     @Test
-    public void shouldReturnInfinityIfTheAreaOverflowsMaxValueOfDouble() {
-        Rectangle rectangle = new Rectangle(Double.MAX_VALUE - 1, Double.MAX_VALUE - 1);
-        double expectedArea = Double.POSITIVE_INFINITY;
+    void shouldRaiseExceptionIAreaOverFlowsMaxValueOfDouble() throws ValidateRectangleDimensionException {
+        Rectangle rectangle = new Rectangle(Double.MAX_VALUE + 2, Double.MAX_VALUE / 2);
+        Executable executable = rectangle::area;
 
-        double actualArea = rectangle.area();
+        assertThrows(AreaOutOfBoundsException.class, executable);
 
-        assertEquals(expectedArea, actualArea);
     }
 
     // Perimeter Tests
     @Test
-    public void shouldReturnPerimeterFourForUnitSides() {
+    public void shouldReturnPerimeterFourForUnitSides() throws ValidateRectangleDimensionException, PerimeterOutOfBoundsException {
         Rectangle rectangle = new Rectangle(1, 1);
         double expectedPerimeter = 4;
 
@@ -74,7 +73,7 @@ public class RectangleTest {
     }
 
     @Test
-    public void shouldReturnPerimeterValueForPositiveSides() {
+    public void shouldReturnPerimeterValueForPositiveSides() throws ValidateRectangleDimensionException, PerimeterOutOfBoundsException {
         Rectangle rectangle = new Rectangle(4, 5);
         double expectedPerimeter = 18;
 
@@ -84,12 +83,11 @@ public class RectangleTest {
     }
 
     @Test
-    void shouldReturnInfinityIfPerimeterOverFlowsMaxValueOfDouble() {
-        Rectangle rectangle = new Rectangle(Double.MAX_VALUE - 1, Double.MAX_VALUE);
-        double expectedPerimeter = Double.POSITIVE_INFINITY;
+    void shouldRaiseExceptionIfPerimeterOverFlowsMaxValueOfDouble() throws ValidateRectangleDimensionException {
+        Rectangle rectangle = new Rectangle(Double.MAX_VALUE / 2, Double.MAX_VALUE / 2);
+        Executable executable = rectangle::perimeter;
 
-        double actualPerimeter = rectangle.perimeter();
+        assertThrows(PerimeterOutOfBoundsException.class, executable);
 
-        assertEquals(expectedPerimeter, actualPerimeter);
     }
 }
