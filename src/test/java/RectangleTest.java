@@ -58,7 +58,7 @@ public class RectangleTest {
     }
 
     @Test
-    void shouldRaiseExceptionIAreaOverFlowsMaxValueOfDouble() throws NonPositiveDimensionException, DimensionOutOfBoundException {
+    void shouldRaiseExceptionIfAreaOverFlowsMaxValueOfDouble() throws NonPositiveDimensionException, DimensionOutOfBoundException {
         Rectangle rectangle = new Rectangle(Double.MAX_VALUE / 2, Double.MAX_VALUE / 2);
         Executable executable = rectangle::area;
 

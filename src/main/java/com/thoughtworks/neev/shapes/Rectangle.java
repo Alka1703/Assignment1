@@ -9,9 +9,8 @@ public class Rectangle {
     private final double length;
     private final double breadth;
 
-    public Rectangle(double side) {
-        this.length=side;
-        this.breadth=side;
+    public static Rectangle createSquare(double side) throws DimensionOutOfBoundException, NonPositiveDimensionException {
+        return new Rectangle(side, side);
     }
 
     private void checkDimensionsValidity(double length, double breadth) throws NonPositiveDimensionException, DimensionOutOfBoundException {
