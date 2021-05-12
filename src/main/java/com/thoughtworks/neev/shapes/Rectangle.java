@@ -9,34 +9,39 @@ public class Rectangle {
     private final double length;
     private final double breadth;
 
-    public static Rectangle createSquare(double side) throws DimensionOutOfBoundException, NonPositiveDimensionException {
+    public static Rectangle createSquare(double side) {
         return new Rectangle(side, side);
     }
 
-    private void checkDimensionsValidity(double length, double breadth) throws NonPositiveDimensionException, DimensionOutOfBoundException {
+    public static Rectangle createRectangle(double length, double breadth) {
+        return new Rectangle(length, breadth);
+    }
+
+    private void checkDimensionsValidity(double length, double breadth) {
         if (length <= 0 || breadth <= 0) {
             throw new NonPositiveDimensionException("Dimension cannot be negative.");
         }
+
         if (length >= Double.MAX_VALUE || breadth >= Double.MAX_VALUE) {
             throw new DimensionOutOfBoundException("Dimension cannot be greater than Double Max.");
         }
     }
 
-    public Rectangle(double length, double breadth) throws NonPositiveDimensionException, DimensionOutOfBoundException {
+    private Rectangle(double length, double breadth) {
         checkDimensionsValidity(length, breadth);
 
         this.length = length;
         this.breadth = breadth;
     }
 
-    public double area() throws AreaOutOfBoundsException {
+    public double area() {
         double area = length * breadth;
         if (area >= Double.MAX_VALUE || area == Double.POSITIVE_INFINITY)
-        throw new AreaOutOfBoundsException("Area Value exceeds the double range");
+            throw new AreaOutOfBoundsException("Area Value exceeds the double range");
         return area;
     }
 
-    public double perimeter() throws PerimeterOutOfBoundsException {
+    public double perimeter() {
 
 
         double perimeter = 2 * (length + breadth);

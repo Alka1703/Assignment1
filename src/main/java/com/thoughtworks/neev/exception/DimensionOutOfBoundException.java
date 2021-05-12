@@ -1,6 +1,6 @@
 package com.thoughtworks.neev.exception;
 
-public class DimensionOutOfBoundException extends Throwable{
+public class DimensionOutOfBoundException extends RuntimeException{
     public DimensionOutOfBoundException(String message) {
         super(message);
     }
